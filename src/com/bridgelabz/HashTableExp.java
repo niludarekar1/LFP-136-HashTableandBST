@@ -1,8 +1,6 @@
 package com.bridgelabz;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-
 public class HashTableExp<T extends Comparable<T>> {
 
     private final int m;
@@ -28,9 +26,12 @@ public class HashTableExp<T extends Comparable<T>> {
         LinkedList ll = myHashTableList.get(index);
         if(ll == null) {
             ll = new LinkedList();
-           // ll.insertNode(mystr);
+            ll.insertNode(mystr);
             myHashTableList.set(index,ll);
-
+        } else {
+            if(!ll.findNode(mystr)){
+                ll.insertNode(mystr);
+            }
         }
     }
 
@@ -40,9 +41,19 @@ public class HashTableExp<T extends Comparable<T>> {
             LinkedList ll = myHashTableList.get(i);
             if(ll != null) {
                 System.out.print("\n "+ i +" => ");
-        //        ll.showLinkedList();
+                ll.showLinkedList();
             }
         }
     }
 
+    //Methode to Remove Key
+    public void removeKey(int index,T word) {
+        if(myHashTableList.contains(index)) {
+            LinkedList linkedList = myHashTableList.get(index);
+            linkedList.removeNode(word);
+        } else {
+            System.out.println("No Key Match with Given Word.");
+        }
+
+    }
 }
